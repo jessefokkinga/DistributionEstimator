@@ -40,3 +40,9 @@ In the method below, we refer to the data that we use to fit our models as the '
 In order to deploy this idea to a problem of choice, this repository provides two templates that implement the described idea to a specific regression problem. Both implementations use a random forest model, but any algorithm suited for regression problems can be used as well. 
 The implementation code contains extensive comments in order to explain each of the steps needed to build prediction intervals with the method described in this repository.  
 
+## Requirements
+
+As mentioned, there are no specific requirements to apply the method described in this repository, as it is compatible with any machine learning suitable for regression problems. 
+However, in order to run the code that is provided in the two code templates some libraries are required. For the Python implementation, the requirements can be installed by running `pip install -r requirements.txt`. 
+
+The method has been validated with python 3.7 and R 4.0, using a variety of different datasets. 
