@@ -15,7 +15,7 @@ Quantile regression is more tricky to implement, as it requires altering the los
 The **distribution estimator** describes an alternative way to generate prediction intervals for **any machine learning model of choice**.
 The described method is compatible with all regression problems and implementation is straightforward.
 The distribution estimator depends on the assumption that the outcome of some regression problem is normally distributed around the predictions of some learning model.
-Moreover, it also assumes that the standard deviation of this normal distribution is depend on the features that are used in the training process of this model.
+Moreover, it also assumes that the standard deviation of this normal distribution is dependent on the features that are used in the training process of this model.
 
 
 ## The algorithm

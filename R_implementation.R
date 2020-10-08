@@ -1,4 +1,8 @@
-library(randomForest)
+rm(list=ls())
+if(!require(randomForest)){
+  install.packages("randomForest")
+  library(randomForest)
+}
 
 # In this template random subsampling validation is used to predict
 # an entire distribution of some response variable of new observations, thereby providing a generic way to
@@ -70,18 +74,18 @@ for (i in 1:C) {
 # We use a random forest model to predict the squared residuals, because this algorithm often achieves good accuracy and 
 # requires little to no parameter tuning. However, in principle any other model could be used as well. 
 
-sd_estimator <- randomForest(y=residuals, x=train[saved_data_indices,!names(train) %in% response])
+sd_estimator           <- randomForest(y=residuals, x=train[saved_data_indices,!names(train) %in% response])
 
 # Now it is time to fit our main model. We fit a random forest model on our full training data. 
 # Afterwards, we use our main model to predict the alcohol percentage of the observations in our test set. 
 
-rf_main  <- randomForest(as.formula(paste(response,"~.")), data=train)
-pred <- predict(rf_main,newdata=test[,!names(test) %in% response])
+rf_main                <- randomForest(as.formula(paste(response,"~.")), data=train)
+pred                   <- predict(rf_main,newdata=test[,!names(test) %in% response])
 
 # We will now use our sd_estimator model to predict the deviation from the predicted value 
 # for each observation in order to obtain an observation-specific approximated standard deviation.  
 
-std      <- (predict(sd_estimator,newdata=test[,!names(test) %in% response]))^0.5
+std                    <- (predict(sd_estimator,newdata=test[,!names(test) %in% response]))^0.5
 
 # In order to calculate a prediction interval for each new observation, we use the approximated standard deviation for
 # each observation in the test set and the assumption that the true realizations of our response variable (alcohol
@@ -95,7 +99,8 @@ lo <- pred - qt(1 - (1-confidence)/2,df=n-1)*std
 # In order to check the validity of our prediction interval, we will calculate what percentage of the observations
 # in the test set fall in their calculated prediction interval.  
 
-length(which(up>test[,response] & test[,response] > lo))/length(test[,response])
+perc_observations_inside_interval <- length(which(up>test[,response] & test[,response] > lo))/length(test[,response])
+print(perc_observations_inside_interval)
 
 # If you have used the default settings you will find that the proportion of observations within the interval  
 # approximately matches the set confidence level of 95%. Thus, we were able to calculate an accurate prediction interval

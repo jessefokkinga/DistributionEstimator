@@ -17,8 +17,8 @@ from scipy import stats
 
 path              = "./data/winequality-white.csv"
 data              = pd.read_csv(path, sep=";")
-response         = "alcohol"
-features         = data.columns[data.columns != response]
+response          = "alcohol"
+features          = data.columns[data.columns != response]
 
 # Ultimately, we want to be able to predict the alcohol percentage for any new wine, based on a set of features and a some
 # statistical model that is trained on a sample of wines for which the alcohol percentage is already known. In order to mimic 
@@ -100,7 +100,8 @@ lo = pred - t_value*std
 # In order to check the validity of our prediction interval, we will calculate what percentage of the observations
 # in the test set fall in their calculated prediction interval. 
 
-len(test.loc[(up>test[response]) & (test[response] > lo)].index)/len(test.index)
+perc_observations_inside_interval = len(test.loc[(up>test[response]) & (test[response] > lo)].index)/len(test.index)
+print(perc_observations_inside_interval)
 
 # If you have used the default settings you will find that the proportion of observations within the interval  
 # approximately matches the set confidence level of 95%. Thus, we were able to calculate an accurate prediction interval
