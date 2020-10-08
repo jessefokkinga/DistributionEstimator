@@ -3,7 +3,7 @@
 Most data scientists will agree that is useful to quantify uncertainty when building machine learning models for regression problems. 
 The measure of uncertainty is often provided by prediction intervals around the point predictions from the used model. 
 This repository contains code to produce **scalable univariate prediction intervals** by estimating the full distribution of the target variable that is being modelled.
-The method described, the *distribution estimator*, in this repository is a computionally efficient way to generate accurate prediction interval for any machine learning model of choice. 
+The method described in this repository, referred to as the *distribution estimator*, is a computionally efficient way to generate accurate prediction interval for any machine learning model of choice. 
 It contain both an explanation of the idea, some details on the working of algorithm and two examples of implementations in Python and R. 
 
 ## The concept
@@ -12,7 +12,7 @@ Two commonly used ways to generate prediction intervals for regression problems 
 The downside of bootstrapping it computationally intesnive and may not be feasible for complex models with significant training time. 
 Quantile regression is more tricky to implement, as it requires altering the loss function of the machine learning model, and hence it is not always a feasible option. 
 
-The **distribution estimator** describes an alternative way to generate prediction interval for **any machine learnig model of choice**.
+The **distribution estimator** describes an alternative way to generate prediction interval for **any machine learning model of choice**.
 The described method is compatible with all regression problems and implementation is straightforward.
 The distribution estimator depends on the assumption that the outcome of some regression problem is normally distributed around the predictions of some learning model.
 Moreover, it also assumes that the standard deviation of this normal distribution is depend on the features that are used in the training process of this model.
